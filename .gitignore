@@ -1,0 +1,8 @@
+# OS/editor generated files
+.DS_Store
+[Dd]esktop.ini
+*.swp
+
+# Generated files
+*.exe
+*.o
