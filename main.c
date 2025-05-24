@@ -36,7 +36,7 @@ int main() {
 
   printf("-- Output:\n");
   printf("   ");
-  vec_printr(my_arr);
+  vec_print(my_arr);
 
   //   Access element
   printf("\n:: Accessing the array\n");
@@ -45,7 +45,7 @@ int main() {
   if (my_arr == NULL) {
     printf("Array is deleted\n");
   } else {
-    size_t len = my_arr->length;
+    size_t len = vec_len(my_arr);
     printf("%zu elements, last element is %d\n", len, *vec_at(my_arr, len - 1));
   }
 
@@ -57,11 +57,11 @@ int main() {
   if (my_arr == NULL) {
     printf("   Array is deleted\n");
   } else {
-    size_t len = my_arr->length;
+    size_t len = vec_len(my_arr);
     printf("   Array exists; last element is %d\n", *vec_at(my_arr, len - 1));
 
     printf("   ");
-    vec_printr(my_arr);
+    vec_print(my_arr);
   }
   printf("\n");
 
@@ -71,11 +71,11 @@ int main() {
   if (my_arr == NULL) {
     printf("   Array is deleted\n");
   } else {
-    size_t len = my_arr->length;
+    size_t len = vec_len(my_arr);
     printf("   Array exists; last element is %d\n", *vec_at(my_arr, len - 1));
 
     printf("   ");
-    vec_printr(my_arr);
+    vec_print(my_arr);
   }
   printf("\n");
 }

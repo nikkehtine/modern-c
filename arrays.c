@@ -1,3 +1,5 @@
+#include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "arrays.h"
@@ -22,11 +24,33 @@ Vector* vec_new(size_t size) {
   return vector;
 }
 
+bool vec_exists(Vector* vector) {
+  if (vector == NULL) {
+    printf("Vector is NULL\n");
+    return false;
+  } else if (vector->contents == NULL) {
+    printf("Vector contents are NULL\n");
+    return false;
+  }
+  return true;
+}
+
+int* vec_at(Vector* vector, size_t index) {
+  if (!vec_exists(vector)) {
+    return NULL;
+  }
+  if (index > vector->length) {
+    printf("Index out of bounds\n");
+    return NULL;
+  }
+  return &vector->contents[index];
+}
+
 // Appends an element to a `Vector`.
 // Returns the new size of the vector, which remains unchanged if allocation fails.
 size_t vec_append(Vector* vector, int element) {
-  if (!vector) {
-    printf("Can't append: Vector is NULL\n");
+  if (!vec_exists(vector)) {
+    printf("Failed to append\n");
   }
 
   if (vector->length == vector->capacity) {
@@ -48,15 +72,10 @@ Vector* vec_delete(Vector* vector) {
   return NULL;
 }
 
-void vec_printr(Vector* vector) {
-  if (vector == NULL) {
-    printf("Vector is NULL\n");
-    return;
-  } else if (vector->contents == NULL) {
-    printf("Vector contents are NULL\n");
+void vec_print(Vector* vector) {
+  if (!vec_exists(vector)) {
     return;
   }
-
   printf("[ ");
   for (int i = 0; i < vector->length; i++) {
     printf("%d", vector->contents[i]);
@@ -66,19 +85,9 @@ void vec_printr(Vector* vector) {
   printf(" ]\n");
 }
 
-int* vec_at(Vector* vector, size_t index) {
-  if (vector == NULL) {
-    printf("Vector is NULL\n");
-    return NULL;
-  } else if (vector->contents == NULL) {
-    printf("Vector contents are NULL\n");
-    return NULL;
+size_t vec_len(Vector* vector) {
+  if (!vec_exists(vector)) {
+    return 0;
   }
-
-  if (index > vector->length) {
-    printf("Index out of bounds\n");
-    return NULL;
-  }
-
-  return &vector->contents[index];
+  return vector->length;
 }
