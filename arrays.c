@@ -2,7 +2,7 @@
 
 #include "arrays.h"
 
-Vector* new_vector(size_t size) {
+Vector* vec_new(size_t size) {
   Vector* vector = malloc(sizeof(Vector));
   if (vector == NULL) {
     printf("Memory allocation failed\n");
@@ -24,7 +24,7 @@ Vector* new_vector(size_t size) {
 
 // Appends an element to a `Vector`.
 // Returns the new size of the vector, which remains unchanged if allocation fails.
-size_t append_vector(Vector* vector, int element) {
+size_t vec_append(Vector* vector, int element) {
   if (!vector) {
     printf("Can't append: Vector is NULL\n");
   }
@@ -40,7 +40,7 @@ size_t append_vector(Vector* vector, int element) {
   return vector->length;
 }
 
-Vector* delete_vector(Vector* vector) {
+Vector* vec_delete(Vector* vector) {
   if (vector) {
     free(vector->contents);
     free(vector);
@@ -48,12 +48,12 @@ Vector* delete_vector(Vector* vector) {
   return NULL;
 }
 
-void print_debug_vector(Vector* vector) {
+void vec_printr(Vector* vector) {
   if (vector == NULL) {
-    printf("Vector is NULL");
+    printf("Vector is NULL\n");
     return;
   } else if (vector->contents == NULL) {
-    printf("Vector contents are NULL");
+    printf("Vector contents are NULL\n");
     return;
   }
 
@@ -64,4 +64,21 @@ void print_debug_vector(Vector* vector) {
       printf(", ");
   }
   printf(" ]\n");
+}
+
+int* vec_at(Vector* vector, size_t index) {
+  if (vector == NULL) {
+    printf("Vector is NULL\n");
+    return NULL;
+  } else if (vector->contents == NULL) {
+    printf("Vector contents are NULL\n");
+    return NULL;
+  }
+
+  if (index > vector->length) {
+    printf("Index out of bounds\n");
+    return NULL;
+  }
+
+  return &vector->contents[index];
 }

@@ -11,47 +11,71 @@ int main() {
   //   Dynamic arrays
   int num_of_vec_elements = 4;  // Play with this number
 
-  Vector* my_arr = new_vector(num_of_vec_elements);
+  //   Create
+  Vector* my_arr = vec_new(num_of_vec_elements);
   if (my_arr == NULL) {
     printf("ERROR: failed vector allocation\n");
     return 1;
   }
 
+  //   Append
   printf("\n:: Appending %d elements to the array\n", num_of_vec_elements);
+  printf("------------------------------------\n");
 
-  printf("\n-- Input:\n");
+  printf("-- Input:\n");
+  printf("   ");
   printf("[ ");
   for (int i = 0; i < num_of_vec_elements; i++) {
-    int num = i + 1;
-    append_vector(my_arr, num);
+    vec_append(my_arr, i);
     if (i > 0)
       printf(", ");
-    printf("%d", num);
+    printf("%d", i);
   }
   printf(" ]\n");
+  printf("\n");
 
-  printf("\n-- Output:\n");
-  print_debug_vector(my_arr);
+  printf("-- Output:\n");
+  printf("   ");
+  vec_printr(my_arr);
 
+  //   Access element
+  printf("\n:: Accessing the array\n");
+  printf("----------------------\n");
+
+  if (my_arr == NULL) {
+    printf("Array is deleted\n");
+  } else {
+    size_t len = my_arr->length;
+    printf("%zu elements, last element is %d\n", len, *vec_at(my_arr, len - 1));
+  }
+
+  //   Delete
   printf("\n:: Deleting the array\n");
+  printf("---------------------\n");
 
-  printf("\n-- Input:\n");
+  printf("-- Input:\n");
   if (my_arr == NULL) {
-    printf("Array is deleted\n");
+    printf("   Array is deleted\n");
   } else {
-    printf("Array exists; last element is %d\n", my_arr->contents[my_arr->length - 1]);
+    size_t len = my_arr->length;
+    printf("   Array exists; last element is %d\n", *vec_at(my_arr, len - 1));
+
+    printf("   ");
+    vec_printr(my_arr);
   }
-  print_debug_vector(my_arr);
+  printf("\n");
 
-  my_arr = delete_vector(my_arr);
+  my_arr = vec_delete(my_arr);
 
-  printf("\n-- Output:\n");
+  printf("-- Output:\n");
   if (my_arr == NULL) {
-    printf("Array is deleted\n");
+    printf("   Array is deleted\n");
   } else {
-    printf("Last element is %d\n", my_arr->contents[my_arr->length]);
-  }
-  print_debug_vector(my_arr);
+    size_t len = my_arr->length;
+    printf("   Array exists; last element is %d\n", *vec_at(my_arr, len - 1));
 
-  printf("\n\n");
+    printf("   ");
+    vec_printr(my_arr);
+  }
+  printf("\n");
 }

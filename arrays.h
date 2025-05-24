@@ -5,19 +5,21 @@
 #include <stdlib.h>
 
 // A `Vector` is a dynamic array that can grow and shrink.
-// Use `new_vector(size_t size)` to create one.
+// Use `vec_new(size_t size)` to create one.
 typedef struct Vector {
   size_t length;
   size_t capacity;
   int* contents;
 } Vector;
 
-Vector* new_vector(size_t size);
+Vector* vec_new(size_t size);
 
-size_t append_vector(Vector* vector, int element);
+size_t vec_append(Vector* vector, int element);
 
-Vector* delete_vector(Vector* vector);
+Vector* vec_delete(Vector* vector);
 
-void print_debug_vector(Vector* vector);
+void vec_printr(Vector* vector);
+
+int* vec_at(Vector* vector, size_t index);
 
 #endif
