@@ -40,9 +40,28 @@ size_t append_vector(Vector* vector, int element) {
   return vector->length;
 }
 
-void delete_vector(Vector* vector) {
+Vector* delete_vector(Vector* vector) {
   if (vector) {
     free(vector->contents);
     free(vector);
   }
+  return NULL;
+}
+
+void print_debug_vector(Vector* vector) {
+  if (vector == NULL) {
+    printf("Vector is NULL");
+    return;
+  } else if (vector->contents == NULL) {
+    printf("Vector contents are NULL");
+    return;
+  }
+
+  printf("[ ");
+  for (int i = 0; i < vector->length; i++) {
+    printf("%d", vector->contents[i]);
+    if (i + 1 < vector->length)
+      printf(", ");
+  }
+  printf(" ]\n");
 }

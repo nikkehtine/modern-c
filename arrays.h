@@ -16,6 +16,8 @@ Vector* new_vector(size_t size);
 
 size_t append_vector(Vector* vector, int element);
 
-void delete_vector(Vector* vector);
+Vector* delete_vector(Vector* vector);
+
+void print_debug_vector(Vector* vector);
 
 #endif
