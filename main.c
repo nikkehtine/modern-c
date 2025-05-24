@@ -9,7 +9,7 @@ int main() {
   //   Vectors
   int num_of_vec_elements = 4;  // Play with this number
 
-  struct Vector* my_arr = new_vector(num_of_vec_elements);
+  Vector* my_arr = new_vector(num_of_vec_elements);
   if (my_arr == NULL) {
     printf("ERROR: failed vector allocation\n");
     return 1;

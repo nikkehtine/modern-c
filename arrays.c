@@ -2,8 +2,8 @@
 
 #include "arrays.h"
 
-struct Vector* new_vector(size_t size) {
-  struct Vector* vector = malloc(sizeof(struct Vector));
+Vector* new_vector(size_t size) {
+  Vector* vector = malloc(sizeof(Vector));
   if (vector == NULL) {
     printf("Memory allocation failed\n");
     return NULL;
@@ -24,7 +24,7 @@ struct Vector* new_vector(size_t size) {
 
 // Appends an element to a `Vector`.
 // Returns the new size of the vector, which remains unchanged if allocation fails.
-size_t append_vector(struct Vector* vector, int element) {
+size_t append_vector(Vector* vector, int element) {
   if (!vector) {
     printf("Can't append: Vector is NULL\n");
   }
@@ -40,7 +40,7 @@ size_t append_vector(struct Vector* vector, int element) {
   return vector->length;
 }
 
-void delete_vector(struct Vector* vector) {
+void delete_vector(Vector* vector) {
   if (vector) {
     free(vector->contents);
     free(vector);
